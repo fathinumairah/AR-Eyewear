@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Face Shape Glasses</title>
+    <link rel="stylesheet" href="../styles/styles.css"> <!-- Reusing index styles -->
+    <link rel="stylesheet" href="../styles/heartFace.css"> <!-- Adding specific styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">AR EyeWear</a>
+        <nav class="nav">
+            <a href="#" class="nav-link">Virtual Try-On</a>
+            <a href="#" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+            <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Shop the Best Glasses for Heart Face Shape</h1>
+        <p>Discover the perfect glasses for heart-shaped faces, blending style with functionality.</p>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/rb5401.png" alt="RB5401 Optics">
+                <h2>RB5401 OPTICS</h2>
+                <p class="model">RM 1,678.50</p>
+                <p class="price">RM 1,678.50</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 3 Colors</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/rb6414.png" alt="RB6414 Optics">
+                <h2>RB6414 OPTICS</h2>
+                <p class="price">RM 1,322.30</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 4 Colors</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/orion.png" alt="Orion Optics">
+                <h2>ORION OPTICS</h2>
+                <p class="price">RM 1,512.50</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 2 Colors</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/newRound.png" alt="New Round Optics">
+                <h2>NEW ROUND OPTICS</h2>
+                <p class="price">RM 2,099.00</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 4 Colors</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/aviator.png" alt="Aviator Optics">
+                <h2>AVIATOR OPTICS</h2>
+                <p class="price">RM 1,978.15</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 3 Colors</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="images/roundGaze.png" alt="Round Gaze Optics">
+                <h2>ROUND GAZE OPTICS</h2>
+                <p class="price">RM 1,192.50</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 2 Colors</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL ®, INC. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // Toggle favorite (heart icon)
+        function toggleFavorite(element) {
+            element.classList.toggle('favorited');
+        }
+    </script>
+</body>
+</html>

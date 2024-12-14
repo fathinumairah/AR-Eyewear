@@ -1,0 +1,208 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #000;
+  color: #fff;
+}
+
+.header .logo:hover {
+  color: #333; /* Slight color change on hover */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; /* Black or any color you prefer */
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+.payment-page {
+    display: flex;
+    justify-content: space-between; /* Keep the sections beside each other */
+    gap: 20px; /* Add spacing between the sections */
+    margin-top: 40px;
+  }
+  
+  .shopping-details,
+  .payment-details {
+    flex: 1; /* Ensure both sections take equal width */
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shopping-details {
+    margin-left: 20px; /* Optional: Add slight separation between the two sections */
+     margin-bottom: 30px; /* Adds space before the footer for shopping details */
+  }
+  
+  .payment-details {
+    margin-bottom: 30px; /* Adds space before the footer */
+  }
+  
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  form .form-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  form input,
+  form select {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .payment-details form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .payment-details label {
+    font-size: 14px;
+    font-weight: bold;
+   
+  }
+  
+  .payment-details input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .payment-details input[type="checkbox"] {
+    margin-right: 8px; /* Reduce space between checkbox and label */
+  }
+  
+  .payment-details .checkbox-label {
+    font-size: 14px;
+    margin-bottom: 10px; /* Add some space before the button */
+  }
+  
+  .payment-details .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Reduce space after checkbox */
+  }
+  
+  form button.btn {
+    margin: 20px auto 0; /* Center the button horizontally */
+    display: block; /* Ensures the button centers inside the form */
+    width: 150px; /* Adjust the width of the button */
+    padding: 10px; /* Reduce padding to make it smaller */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* Adjust the font size to fit the smaller button */
+    text-align: center;
+  }
+  
+  form button.btn:hover {
+    background-color: #333;
+  }
+  
+  .payment-details button {
+    margin: 20px auto 10px; /* Center the button and adjust spacing */
+    display: block;
+    width: 150px;
+    padding: 8px 12px; /* Adjust padding to make button smaller */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .payment-details button:hover {
+    background-color: #333;
+  }
+  
+  .payment-options {
+    display: flex;
+    justify-content: center; /* Centers the images horizontally */
+    align-items: center;     /* Centers the images vertically */
+    gap: 20px;               /* Adds space between the images */
+    margin-top: 20px;        /* Adds some top margin for spacing */
+    margin-bottom: 20px;
+  }
+  
+  .payment-options img {
+    width: 50px;             /* Adjust the width of the images */
+    height: auto;            /* Maintain the aspect ratio */
+    max-width: 100%;         /* Ensure images don't exceed container width */
+    object-fit: contain;     /* Make sure the images maintain their aspect ratio */
+  }
+  
+  .payment-options img:hover {
+    opacity: 0.8;
+  }
+  
+  .card-scan img {
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;        /* Adds some top margin for spacing */
+    margin-bottom: 10px;
+  }
+  
+  
+  footer {
+    margin-top: auto;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    background: #000; /* Footer matches nav bar */
+}

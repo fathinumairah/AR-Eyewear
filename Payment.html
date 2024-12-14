@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Eyewear - Payment </title>
+  <link rel="stylesheet" href="styles/payment.css">
+  <script src="productDetails.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            AR EyeWear
+          </a>
+        <nav class="nav">
+          <a href="#" class="nav-link">Virtual Try-On</a>
+          <a href="#" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+          <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </nav>
+      </header>
+
+    <main class="payment-page">
+      <div class="shopping-details">
+        <h2>SHOPPING DETAILS:</h2>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Address" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Apt#, Suite, Etc">
+            <input type="text" placeholder="Company">
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="City" required>
+            <select required>
+              <option value="">State</option>
+              <option value="CA">Kedah</option>
+              <option value="NY">Arau</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Zip Code" required>
+            <input type="text" placeholder="Phone" required>
+          </div>
+          <button type="submit" class="btn">SUBMIT ADDRESS</button>
+        </form>
+      </div>
+
+      <div class="payment-details">
+        <h2>PAYMENT DETAILS:</h2>
+        <p>Enter a credit card or continue with one of these options:</p>
+        <div class="payment-options">
+          <img src="images/Creditcard.png" alt="Credit Card">
+          <img src="images/paypal.png" alt="PayPal">
+          <img src="images/gpay.png" alt="Google Pay">
+          <img src="images/applepay.png" alt="Apple Pay">
+        </div>
+        <div class="card-scan">
+          <h3>Scan your card</h3>
+          <img src="images/card.png" alt="Card Sample">
+        </div>
+        <form>
+            <label for="cardholder-name">Cardholder name</label>
+            <input type="text" id="cardholder-name" placeholder="Cardholder name">
+
+            <label for="card-number">Card number</label>
+            <input type="text" id="card-number" placeholder="Card number">
+
+            <label for="exp-date">Exp date</label>
+            <input type="text" id="exp-date" placeholder="MM/YY">
+
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" placeholder="CVC">
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox">
+              Save your information card
+            </label>
+          </div>
+          <button type="submit" class="btn">PAY NOW</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <footer>&copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL ®, INC. ALL RIGHTS RESERVED.</footer>
+
+</body>
+</html>

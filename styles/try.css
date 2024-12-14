@@ -1,0 +1,149 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #000;
+  color: #fff;
+}
+
+.header .logo:hover {
+  color: #333; /* Slight color change on hover */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; /* Black or any color you prefer */
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Face Shapes Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 30px;
+    justify-items: center;
+}
+
+.card {
+    background: #ffffff; /* White card background */
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Prevents cards from being too wide */
+    padding: 20px 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 150px; /* Larger image */
+    height: auto;
+    margin: 15px auto;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 15px 0;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #666;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #e4b64a;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(228, 182, 74, 0.4);
+}
+
+.btn:hover {
+    background: #d69631;
+    box-shadow: 0 10px 25px rgba(228, 182, 74, 0.6);
+}
+
+.footer {
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  padding: 15px 20px;
+  margin-top: auto;
+  font-size: 12px;
+}

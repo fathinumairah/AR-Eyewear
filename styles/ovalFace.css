@@ -1,0 +1,188 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .header .logo:hover {
+    color: #333; /* Slight color change on hover */
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff; /* Black or any color you prefer */
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .nav-link i {
+    margin-right: 5px;
+  }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Product Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            gap: 40px;
+            justify-items: center;
+        }
+
+        .card {
+            background: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%; /* Ensures consistent width */
+            max-width: 350px; /* Sets the maximum width */
+            height: 350px; /* Fixed height for static size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For the heart icon */
+            display: flex;
+            flex-direction: column; /* Aligns items vertically */
+            justify-content: space-between; /* Ensures consistent spacing */
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 200px; /* Glasses image size */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 15px;
+            margin-left: 60px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .price {
+            font-size: 16px;
+            
+            color: #333;
+        }
+
+        .model {
+          font-size: 16px;
+          
+          color: #333;
+      }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #e4b64a;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d69631;
+            box-shadow: 0 5px 15px rgba(228, 182, 74, 0.4);
+        }
+
+        .colors {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        /* Heart Icon */
+        .heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .heart:hover,
+        .heart.favorited {
+            color: #e74c3c; /* Red for favorited */
+        }
+
+        /* Footer */
+        footer {
+          margin-top: auto;
+          font-size: 16px;
+          color: #fff;
+          text-align: center;
+          padding: 15px 20px;
+          border-top: 1px solid #ddd;
+          background: #000; /* Footer matches nav bar */
+      }

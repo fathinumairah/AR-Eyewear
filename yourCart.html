@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR EyeWear - Your Cart</title>
+  <link rel="stylesheet" href="styles/cart.css"> <!-- Linking the CSS file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            AR EyeWear
+          </a>
+        <nav class="nav">
+          <a href="#" class="nav-link">Virtual Try-On</a>
+          <a href="#" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+          <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </nav>
+    </header>
+
+      <br><br>
+      <div class="container">
+        <!-- Cart Summary and Checkout Button -->
+        <br>
+        <div class="cart-summary-container">
+          <div class="cart-summary">
+            <span>Your Cart (2):</span>
+            <span>RM 3170.65</span>
+          </div>
+          <button onclick="window.location.href='Payment.html'" class="checkout-btn">CHECKOUT</button>
+        </div>
+    
+        <!-- Cart Item 1 -->
+        <div class="cart-item">
+          <img src="images/clubmaster.png" alt="Clubmaster Optics">
+          <div class="cart-item-details">
+            <div class="item-header">
+              <h3>CLUBMASTER OPTICS</h3>
+              <div class="cart-item-quantity">
+                <span>Quantity:</span>
+                <input type="number" value="1" min="1">
+              </div>
+            </div>
+            <p>RB5154</p>
+            <p>Black</p>
+            <div class="subtotal-price">
+              <span>Subtotal (RM):</span>
+              <span class="price">RM 1192.50</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Cart Item 2 -->
+        <div class="cart-item">
+          <img src="images/hexagonal.png" alt="Hexagonal Titanium Optics">
+          <div class="cart-item-details">
+            <div class="item-header">
+              <h3>HEXAGONAL TITANIUM OPTICS</h3>
+              <div class="cart-item-quantity">
+                <span>Quantity:</span>
+                <input type="number" value="1" min="1">
+              </div>
+            </div>
+            <p>RB8148V</p>
+            <p>Gunmetal</p>
+            <div class="subtotal-price">
+              <span>Subtotal (RM):</span>
+              <span class="price">RM 1978.15</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Total Section -->
+        <div class="cart-total">
+            <span>TOTAL :</span>
+            <span>RM 3170.65</span>
+        </div>
+      </div>
+      <br><br>
+
+      <footer>&copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL ®, INC. ALL RIGHTS RESERVED.</footer>
+
+</body>
+</html>

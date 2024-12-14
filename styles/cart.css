@@ -1,0 +1,183 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #000;
+  color: #fff;
+}
+
+.header .logo:hover {
+  color: #333; /* Slight color change on hover */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff; /* Black or any color you prefer */
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link i {
+  margin-right: 5px;
+}
+
+.container {
+  max-width: 1600px; /* Increased from 800px to 1200px for a wider container */
+  width: 70%;
+  margin: 20px auto; /* Center the container horizontally */
+  padding: 40px; /* Increased padding for more space around content */
+  background-color: #f9f9f9; /* Optional: Add a light background for better distinction */
+  border-radius: 10px; /* Optional: Rounded corners for a smoother look */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a more defined appearance */
+}
+
+.cart-summary-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0;
+  padding: 20px 0; /* Add spacing around the content */
+  border-top: 1px solid #ddd; /* Line above */
+  border-bottom: 1px solid #ddd; /* Line below */
+  
+}
+
+.cart-summary {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
+}
+
+.cart-item img {
+  max-width: 600px;
+  margin-right: 20px;
+  padding: 30px 0;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.item-header h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-quantity span {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.cart-item-quantity input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.subtotal-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.subtotal-price .price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Cart Total Styling */
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 900px; /* Reduce the width of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 0 20px; /* Add some padding on the sides */
+}
+  
+footer {
+  margin-top: auto;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  background: #000; /* Footer matches nav bar */
+}

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Round Face Shape Glasses</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #e4b64a;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e4b64a;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Product Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #e4b64a;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 15px 0;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d69631;
+            box-shadow: 0 5px 15px rgba(228, 182, 74, 0.4);
+        }
+
+        .colors {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        /* Heart Icon */
+        .heart {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .heart:hover,
+        .heart.favorited {
+            color: #e74c3c;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #999;
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AR EyeWear</div>
+            <div>
+                <a href="#virtual-try-on">Virtual Try-On</a>
+                <a href="#favorites">Favourite</a>
+                <a href="#cart">Cart</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Shop the Best Glasses for Round Face Shape</h1>
+        <p>Explore glasses that add angles and definition to round faces for a balanced look.</p>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="rectangle.jpg" alt="Rectangle Frames">
+                <h2>Rectangle Frames</h2>
+                <p class="price">RM 1,678.50</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 3 Colors</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="wayfarer.jpg" alt="Wayfarer Frames">
+                <h2>Wayfarer Frames</h2>
+                <p class="price">RM 1,522.30</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 2 Colors</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="cat-eye.jpg" alt="Cat-Eye Optics">
+                <h2>Cat-Eye Optics</h2>
+                <p class="price">RM 1,822.50</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 4 Colors</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="square.jpg" alt="Square Glasses">
+                <h2>Square Glasses</h2>
+                <p class="price">RM 1,720.40</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 2 Colors</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="geometric.jpg" alt="Geometric Frames">
+                <h2>Geometric Frames</h2>
+                <p class="price">RM 1,950.75</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 3 Colors</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <span class="heart" onclick="toggleFavorite(this)">&#9825;</span>
+                <img src="oversized.jpg" alt="Oversized Glasses">
+                <h2>Oversized Glasses</h2>
+                <p class="price">RM 2,080.00</p>
+                <a href="#" class="btn">Try-On</a>
+                <p class="colors">1 / 4 Colors</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>&copy; 2024 AR Eyewear Optical®. All Rights Reserved.</footer>
+
+    <script>
+        // Toggle favorite (heart icon)
+        function toggleFavorite(element) {
+            element.classList.toggle('favorited');
+        }
+    </script>
+</body>
+</html>
