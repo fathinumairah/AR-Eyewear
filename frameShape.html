@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR EyeWear - Frame Shape</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000000;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-link i {
+      font-size: 1.2em;
+    }
+
+    /* Main Content Section */
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Card Styling */
+    .card {
+      background: #ffe4ec;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      float: right; 
+      width: 200px; /* Increased image size */
+      margin-left: 15px; 
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left; 
+    }
+
+    .card-content h2 {
+      font-size: 1.8em;
+      color: #000000;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .card-content hr {
+      border: none;
+      border-top: 2px solid #000000;
+      width: 100px;
+      margin: 10px auto 0;
+      margin-left: 5px;
+    }
+
+    .card-content p {
+      color: #000000;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      color: #fff;
+      background-color: #222;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.3s;
+    }
+
+    .btn i {
+      margin-left: 10px;
+      transition: margin-left 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #444;
+      transform: translateY(-3px);
+    }
+
+    .btn:hover i {
+      margin-left: 15px;
+    }
+
+    /* Footer Section */
+    footer {
+      margin-top: 50px;
+      background-color: #000;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      AR EyeWear
+    </a>
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="fas fa-camera"></i> Virtual Try-On</a>
+      <a href="#" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+      <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Choose Your Style</h1>
+    <p>Your style knows no bounds. Our frame styles are endless. This is the first step towards a wonderful connection.</p>
+
+    <div class="grid">
+      <!-- Rectangle Frames -->
+      <div class="card">
+        <img src="images/rectangle.png" alt="Rectangle Frames">
+        <div class="card-content">
+          <h2>Rectangle</h2>
+          <hr>
+          <p>Sharp edges for a bold, modern look.</p>
+          <a href="rectangleFrames.html" class="btn">Explore Frames <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Square Frames -->
+      <div class="card">
+        <img src="images/square.png" alt="Square Frames">
+        <div class="card-content">
+          <h2>Square</h2>
+          <hr>
+          <p>Perfect symmetry for a classic feel.</p>
+          <a href="squareFrames.html" class="btn">Explore Frames <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Round Frames -->
+      <div class="card">
+        <img src="images/round.png" alt="Round Frames">
+        <div class="card-content">
+          <h2>Round</h2>
+          <hr>
+          <p>Smooth curves for a vintage charm.</p>
+          <a href="roundFrames.html" class="btn">Explore Frames <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Pilot Frames -->
+      <div class="card">
+        <img src="images/pilot.png" alt="Pilot Frames">
+        <div class="card-content">
+          <h2>Pilot</h2>
+          <hr>
+          <p>Timeless design for a confident edge.</p>
+          <a href="pilotFrames.html" class="btn">Explore Frames <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL ®, INC. ALL RIGHTS RESERVED.
+  </footer>
+
+</body>
+</html>

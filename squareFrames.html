@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR EyeWear - Round Frames</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000000;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-link i {
+      font-size: 1.2em;
+    }
+
+    /* Main Content Section */
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Product Card Styling */
+    .card {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 15px;
+    }
+
+    .card h2 {
+      font-size: 1.2em;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #777;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+
+    .card .btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      color: #fff;
+      background-color: #222;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .card .btn:hover {
+      background-color: #444;
+    }
+
+    .card .favourite {
+      font-size: 1.5em;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .card .favourite.active {
+      color: #e74c3c;
+    }
+
+    .try-on {
+      background-color: #000;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .explore {
+      background-color: #120202;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .color-count {
+      color: #666;
+      font-size: 0.75em;
+      margin: 10;
+    }
+
+
+    footer {
+      margin-top: 50px;
+      background-color: #000;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const favouriteButtons = document.querySelectorAll('.favourite');
+
+      // Function to load favourites from localStorage
+      const loadFavourites = () => {
+        return JSON.parse(localStorage.getItem('favourites')) || [];
+      };
+
+      // Function to save favourites to localStorage
+      const saveFavourites = (favourites) => {
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+      };
+
+      // Initialize favourites
+      const favourites = loadFavourites();
+
+      // Add favourites to storage and set the heart as active
+      const toggleFavourite = (button, product) => {
+        const isActive = button.classList.contains('active');
+
+        if (isActive) {
+          // Remove from favourites
+          const index = favourites.findIndex(fav => fav.name === product.name);
+          if (index > -1) {
+            favourites.splice(index, 1);
+          }
+          button.classList.remove('active');
+        } else {
+          // Add to favourites
+          favourites.push(product);
+          button.classList.add('active');
+        }
+
+        // Save the updated favourites
+        saveFavourites(favourites);
+      };
+
+      // Attach click events to favourite buttons
+      favouriteButtons.forEach(button => {
+        const card = button.closest('.card');
+        const product = {
+          name: card.querySelector('h2').innerText,
+          price: card.querySelector('p').innerText,
+          image: card.querySelector('img').src,
+        };
+
+        // Check if product is already a favourite
+        if (favourites.some(fav => fav.name === product.name)) {
+          button.classList.add('active');
+        }
+
+        // Handle click event
+        button.addEventListener('click', () => toggleFavourite(button, product));
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      AR EyeWear
+    </a>
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="fas fa-camera"></i> Virtual Try-On</a>
+      <a href="favourites.html" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+      <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Shop the Best Glasses for Square Frame Style</h1>
+    <p>Almost any frame style works with Round. Shop the latest eyewear for Round Frame Style.</p>
+
+    <div class="grid">
+      <!-- Product 1 -->
+      <div class="card">
+        <img src="images/RB4378VOPTICS.jpg" alt="RB4378V OPTICS">
+        <h2>RB4378V OPTICS</h2>
+        <p>RM 510.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/rb4378Details.html" class="explore">Explore </a>
+          <p class="color-count">1 / 5 Colors</p>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="card">
+        <img src="images/newCaravanOptics.jpg" alt="NEW CARAVAN OPTICS">
+        <h2>NEW CARAVAN OPTICS</h2>
+        <p>RM 644.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/newCaravanDetails.html" class="explore">Explore </a>
+          <p class="color-count">1 / 4 Colors</p>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="card">
+        <img src="images/RB4379VOPTICS.jpg" alt="RB4379V OPTICS">
+        <h2>RB4379V OPTICS</h2>
+        <p>RM 455.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/rb4379vDetails.html" class="explore">Explore </a>
+          <p class="color-count">1 / 4 Colors</p>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="card">
+        <img src="images/scuderia.jpg" alt="RB6484M SCUDERIA FERRARI COLLECTION">
+        <h2>RB6484M SCUDERIA FERRARI COLLECTION</h2>
+        <p>RM 955.48</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/scuderiaFerrariDetails.html" class="explore">Explore </a>
+          <p class="color-count">1 / 5 Colors</p>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="card">
+        <img src="images/rb4362.jpg" alt="RB4362 OPTICS">
+        <h2>RB4362 OPTICS</h2>
+        <p>RM 439.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/rb4362Details.html" class="explore">Explore </a>
+          <p class="color-count">1 / 2 Colors</p>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="card">
+        <img src="images/RB6418OPTICS.jpg" alt="RB6418 OPTICS">
+        <h2>RB6418 OPTICS</h2>
+        <p>RM 499.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <a href="squareFrame/rb6418Details.html" class="explore">Explore </a>
+          <p class="color-count">1 Color</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 AR EyeWear | All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

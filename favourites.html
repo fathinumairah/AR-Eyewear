@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR EyeWear - Frames</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f5;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #000;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+    }
+
+    .filter-container {
+      margin-bottom: 30px;
+    }
+
+    .frame-filter {
+      padding: 10px;
+      font-size: 1.1em;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 150px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+
+    .card h2 {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 15px;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .remove-btn {
+      background-color: #e74c3c;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      background-color: #c0392b;
+    }
+
+    footer {
+      margin-top: 50px;
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .empty-message {
+      text-align: center;
+      font-size: 1.2em;
+      color: #888;
+      margin-top: 50px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const favouriteButtons = document.querySelectorAll('.favourite');
+      const removeButtons = document.querySelectorAll('.remove-btn');
+      const filterDropdown = document.getElementById('frame-filter');
+      const cards = document.querySelectorAll('.card');
+      
+      // Load favourites from localStorage
+      const loadFavourites = () => JSON.parse(localStorage.getItem('favourites')) || [];
+      const saveFavourites = (favourites) => localStorage.setItem('favourites', JSON.stringify(favourites));
+
+      const favourites = loadFavourites();
+
+      // Toggle the favourite button and add/remove items from the list
+      const toggleFavourite = (button, product) => {
+        const isActive = button.classList.contains('active');
+        
+        if (isActive) {
+          // Remove the favourite
+          const index = favourites.findIndex(fav => fav.name === product.name);
+          if (index > -1) favourites.splice(index, 1);
+          button.classList.remove('active');
+        } else {
+          // Add to favourite
+          favourites.push(product);
+          button.classList.add('active');
+        }
+
+        saveFavourites(favourites);
+      };
+
+      favouriteButtons.forEach(button => {
+        const card = button.closest('.card');
+        const product = {
+          name: card.querySelector('h2').innerText,
+          price: card.querySelector('p').innerText,
+          image: card.querySelector('img').src,
+        };
+
+        // Mark existing favourites as active
+        if (favourites.some(fav => fav.name === product.name)) {
+          button.classList.add('active');
+        }
+
+        // Listen for the favourite button click
+        button.addEventListener('click', () => toggleFavourite(button, product));
+      });
+
+      // Handle remove button click
+      removeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const card = button.closest('.card');
+          const productName = card.querySelector('h2').innerText;
+          const index = favourites.findIndex(fav => fav.name === productName);
+
+          if (index > -1) {
+            favourites.splice(index, 1);
+            saveFavourites(favourites);
+          }
+
+          card.remove();
+        });
+      });
+
+      // Filter frame styles and handle favourites view
+      filterDropdown.addEventListener('change', (e) => {
+        const filterValue = e.target.value;
+        cards.forEach(card => {
+          const frameType = card.getAttribute('data-frame-type');
+          
+          // Show all cards if 'All Styles' is selected
+          if (filterValue === 'all' || filterValue === frameType) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+
+          // Special handling for favourites only view
+          if (filterValue === 'favourites') {
+            const productName = card.querySelector('h2').innerText;
+            const isFavourite = favourites.some(fav => fav.name === productName);
+
+            if (isFavourite) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+
+      // Automatically handle displaying favourites on page load if needed
+      if (filterDropdown.value === 'favourites') {
+        cards.forEach(card => {
+          const productName = card.querySelector('h2').innerText;
+          const isFavourite = favourites.some(fav => fav.name === productName);
+
+          if (isFavourite) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">AR EyeWear</a>
+    <nav class="nav">
+      <a href="#" class="nav-link"><i class="fas fa-camera"></i> Virtual Try-On</a>
+      <a href="favourites.html" class="nav-link"><i class="fas fa-heart"></i> Favourites</a>
+      <a href="yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Shop the Best Glasses for Every Frame Style</h1>
+    <p>Find frames for every style: Round, Square, Rectangle, and Pilot.</p>
+
+    <!-- Frame filter dropdown -->
+    <div class="filter-container">
+      <select id="frame-filter" class="frame-filter">
+        <option value="all">All Styles</option>
+        <option value="round">Round</option>
+        <option value="square">Square</option>
+        <option value="rectangle">Rectangle</option>
+        <option value="pilot">Pilot</option>
+        <option value="favourites">Favourites</option>  <!-- Added the option -->
+      </select>
+    </div>
+
+    <div class="grid">
+
+      <!--ROUND-->
+
+      <!--ROUND 1-->
+      <div class="card" data-frame-type="round">
+        <img src="images/rb6375.png" alt="RB6375 OPTICS">
+        <h2>RB6375 OPTICS</h2>
+        <p>RM 855.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--ROUND 2-->
+      <div class="card" data-frame-type="round">
+        <img src="images/roundGaze.png" alt="ROUND GAZE">
+        <h2>ROUND GAZE</h2>
+        <p>RM 945.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--ROUND 3-->
+      <div class="card" data-frame-type="round">
+        <img src="images/thalia.png" alt="THALIA OPTICS">
+        <h2>THALIA OPTICS</h2>
+        <p>RM 945.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--ROUND 4-->
+      <div class="card" data-frame-type="round">
+        <img src="images/orion.png" alt="ORION OPTICS">
+        <h2>ORION OPTICS</h2>
+        <p>RM 960.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--ROUND 5-->
+      <div class="card" data-frame-type="round">
+        <img src="images/clubmaster.png" alt="CLUBROUND MARBLE OPTICS">
+        <h2>CLUBROUND MARBLE OPTICS</h2>
+        <p>RM 892.50</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--ROUND 6-->
+      <div class="card" data-frame-type="round">
+        <img src="images/newRound.png" alt="NEW ROUND OPTICS">
+        <h2>NEW ROUND OPTICS</h2>
+        <p>RM 1,005.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE-->
+
+      <!--SQUARE 1-->
+      <div class="card" data-frame-type="square">
+        <img src="images/RB4378VOPTICS.jpg" alt="RB4378V OPTICS">
+        <h2>RB4378V OPTICS</h2>
+        <p>RM 510.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE 2-->
+      <div class="card" data-frame-type="square">
+        <img src="images/newCaravanOptics.jpg" alt="NEW CARAVAN OPTICS">
+        <h2>NEW CARAVAN OPTICS</h2>
+        <p>RM 644.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE 3-->
+      <div class="card" data-frame-type="square">
+        <img src="images/RB4379VOPTICS.jpg" alt="RB4379V OPTICS">
+        <h2>RB4379V OPTICS</h2>
+        <p>RM 455.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE 4-->
+      <div class="card" data-frame-type="square">
+        <img src="images/scuderia.jpg" alt="RB6484M SCUDERIA FERRARI COLLECTION">
+        <h2>RB6484M SCUDERIA FERRARI COLLECTION</h2>
+        <p>RM 955.48</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE 5-->
+      <div class="card" data-frame-type="square">
+        <img src="images/rb4362.jpg" alt="RB4362 OPTICS">
+        <h2>RB4362 OPTICS</h2>
+        <p>RM 439.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 2 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--SQUARE 6-->
+      <div class="card" data-frame-type="square">
+        <img src="images/RB6418OPTICS.jpg" alt="RB6418 OPTICS">
+        <h2>RB6418 OPTICS</h2>
+        <p>RM 499.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 Color</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--PILOT-->
+
+      <!-- PILOT 1 -->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/RB8420.jpg" alt="RB8420">
+        <h2>RB8420</h2>
+        <p>RM 550.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 2 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!-- PILOT 2 -->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/RB6413.jpg" alt="RB6413">
+        <h2>RB6413</h2>
+        <p>RM 469.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!-- PILOT 3 -->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/RB3733V.jpg" alt="RB3733V">
+        <h2>RB3733V OPTICS</h2>
+        <p>RM 548.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!-- PILOT 4-->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/BAIN_BRIDGE_OPTICS.jpg" alt="BAIN BRIDGE OPTICS">
+        <h2>BAIN BRIDGE OPTICS</h2>
+        <p>RM 607.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!-- PILOT 5 -->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/AVIATOR_TITANIUM_OPTICS.jpg" alt="aviator TITANIUM OPTICS">
+        <h2>AVIATOR TITANIUM OPTICS</h2>
+        <p>RM 1,388.00</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!-- PILOT 6 -->
+      <div class="card" data-frame-type="pilot">
+        <img src="images/AVIATOR2.jpg" alt="AVIATOR II TITANIUM OPTICS">
+        <h2>AVIATOR II TITANIUM OPTICS</h2>
+        <p>RM 1,018.58</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 5 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE-->
+
+      <!--RECTANGLE 1-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/RB7205M.jpg" alt="RB7205M SCUDERIA FERRARI COLLECTION ">
+        <h2>RB7205M SCUDERIA FERRARI COLLECTION </h2>
+        <p>RM 987.55</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 Color</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE 2-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/julie.jpg" alt="JULIE OPTICS">
+        <h2>JULIE OPTICS</h2>
+        <p>RM 828.71</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 6 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE 3-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/rb5169.jpg" alt="RB5169 OPTICS">
+        <h2>RB5169 OPTICS</h2>
+        <p>RM 870.15</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 3 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE 4-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/rb8731.jpg" alt="rb8731 OPTICS">
+        <h2>rb8731 OPTICS</h2>
+        <p>RM 1,042.80</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 3 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE 5-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/rb8727.jpg" alt="rb8727 OPTICS">
+        <h2>rb8727 OPTICS</h2>
+        <p>RM 1,153.30</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 3 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <!--RECTANGLE 6-->
+      <div class="card" data-frame-type="rectangle">
+        <img src="images/rb5391.jpg" alt="rb5391 OPTICS">
+        <h2>rb5391 OPTICS</h2>
+        <p>RM 828.71</p>
+        <div class="btn-container">
+          <span class="favourite"><i class="fas fa-heart"></i></span>
+          <a href="#" class="try-on">Try-On <i class="fas fa-camera"></i></a>
+          <p class="color-count">1 / 4 Colors</p>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL &reg;, INC. ALL RIGHTS RESERVED.
+  </footer>
+</body>
+</html>

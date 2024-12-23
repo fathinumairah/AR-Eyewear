@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR EyeWear - Product Details</title>
+  <link rel="stylesheet" href="styles/productDetails.css"> <!-- Linking the CSS file -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+      <style>
+        /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .header .logo:hover {
+    color: #333; /* Slight color change on hover */
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff; /* Black or any color you prefer */
+  }
+  
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .nav-link i {
+    margin-right: 5px;
+  }
+  
+
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Main container for content alignment */
+.content-wrapper {
+    display: flex; /* Align sections horizontally */
+    
+    justify-content: space-between; /* Center all sections horizontally */
+    gap: 40px; /* Space between the product images and details */
+}
+
+/* Ensure Product Images and Details take balanced space */
+.product-images {
+    flex: 1; /* Allows equal space distribution */
+    max-width: 90%; /* Prevents sections from taking too much width */
+    text-align:justify; /* Centers text and elements inside sections */
+}
+
+.product-details {
+    flex: 1; /* Allows equal space distribution */
+    max-width: 90%; /* Prevents sections from taking too much width */
+    text-align:justify; /* Centers text and elements inside sections */
+}
+
+/* Ensure images stay responsive */
+.product-images img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centers images inside the container */
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-gap: 15px; /* space between images */
+    margin-right: 0px;
+}
+
+.image-grid img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Product Details Styles */
+.product-details {
+    width: 60%;
+}
+
+.product-details h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Price and Availability Styles */
+.price-availability {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the left */
+    margin-bottom: 20px; /* Adds space below the section */
+}
+
+.price {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0; /* Removes default margin */
+}
+
+.price-availability {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the left */
+    margin-bottom: 20px; /* Adds space below the section */
+}
+
+.price-and-cart {
+    display: flex;
+    align-items: center; /* Aligns button and price vertically */
+    gap: 15px; /* Adds space between the button and the price */
+}
+
+.availability {
+    margin-top: 10px; /* Adds space between availability text and price/cart */
+    font-size: 18px;
+    color: green; /* Makes the "In Stock" text stand out */
+    font-weight: bold;
+}
+
+.product-description {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/* Specifications Styles */
+.product-specifications {
+    margin-bottom: 20px;
+}
+
+.product-specifications h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Container to Align Frame Description and Dimensions */
+.frame-and-dimensions {
+    display: flex; /* Align sections horizontally */
+    justify-content: space-between; /* Add equal space between sections */
+    gap: 10px; /* Optional: Add spacing between sections */
+    margin-bottom: 20px; /* Add bottom margin */
+}
+
+/* Frame and Dimensions Section Styling */
+.spec-frame {
+    flex: 1; /* Make sections take equal space */
+    max-width: 100%; /* Prevent sections from growing too large */
+}
+
+.spec-dimensions {
+    flex: 1; /* Make sections take equal space */
+    max-width: 100%; /* Prevent sections from growing too large */
+    margin-left: 145px;
+}
+
+.spec-dimensions h4, .spec-frame h4 {
+    
+    font-size: 18px;
+    color: #746f6f;
+}
+
+/* Make list items consistent */
+.spec-frame ul, .spec-dimensions ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.spec-frame li, .spec-dimensions li {
+    font-size: 16px;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* Align Frame Description Header and Image */
+.frame-header {
+    display: flex; /* Align items in a row */
+    align-items: center; /* Vertically align the text and image */
+    gap: 0; /* Remove space between the text and the image */
+    margin-bottom: 15px; /* Space below the header */
+}
+
+
+
+.frame-image {
+    width: 50px; /* Set the image width */
+    height: 35px; /* Maintain the aspect ratio */
+    margin-left: 0px; /* Adjust as needed for small spacing */
+}
+
+/* Color Options Styles */
+
+.color-options {
+      width: 100%;
+    }
+
+    .color-options h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #746f6f;
+    }
+
+    .color-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .color-item img {
+      width: 100px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .color-item img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .color-item h6 {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+      text-align: center;
+    }
+
+
+/* Button alignment */
+.try-on-button {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 40%;
+    margin-bottom: 25px;
+    margin-top: 50px;
+}
+
+.try-on-button:hover {
+    background-color: #a7a0a0;
+}
+
+/* Button alignment */
+.try-on-button-cart {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 464px;
+}
+.try-on-button-cart:hover {
+    background-color: #707070; /* Darker blue on hover */
+}
+
+
+footer {
+    margin-top: auto;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    background: #000; /* Footer matches nav bar */
+}
+      </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="../index.html" class="logo">
+            AR EyeWear
+          </a>
+        <nav class="nav">
+          <a href="#" class="nav-link">Virtual Try-On</a>
+          <a href="../favourites.html" class="nav-link"><i class="fas fa-heart"></i> Favourite</a>
+          <a href="../yourCart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </nav>
+      </header>
+
+      <div class="product-container">
+        <div class="content-wrapper">
+            <!-- Product Images -->
+            <div class="product-images">
+                <button class="try-on-button" onclick="alert('Try on Virtual Feature Coming Soon!')">Try-On Virtual</button>
+                <div class="image-grid">
+                    <img src="imagesPilot/at_PolishedAristaGold.jpg" alt="Aviator Titanium">
+                    <img src="imagesPilot/atAG1.jpg" alt="Aviator Titanium Front View">
+                    <img src="imagesPilot/atAG2.jpg" alt="Aviator Titanium Side View">
+                    <img src="imagesPilot/atAG3.jpg" alt="Aviator Titanium Back View">
+                    <img src="imagesPilot/atAG4.jpg" alt="Aviator Titanium Angle View">
+                    <img src="imagesPilot/atAG5.jpg" alt="Aviator Titanium Angle 2 View">
+                </div>
+            </div>
+
+    <!-- Product Details -->
+    <div class="product-details">
+        <h1>Aviator Titanium Optics</h1>
+    
+        <!-- Price and Availability Section in the Same Line -->
+        <div class="price-availability">
+            <div class="price-and-cart">
+                <p class="price">RM 1388.00</p>
+                <button class="try-on-button-cart" onclick="alert('Your item is added to Cart!')">Add to Cart</button>
+            </div>
+            <p class="availability">Availability: In Stock</p>
+        </div>
+    
+        <div class="product-description">
+            <p>The Ray-Ban Aviator Titanium Optics redefine an iconic design with premium craftsmanship. Made from lightweight and ultra-strong titanium, these eyeglasses provide unparalleled durability and comfort. Retaining the classic teardrop silhouette of the original Aviator, this version is elevated with a modern touch, making it perfect for those who value timeless style and innovative materials. The Aviator Titanium Optics are available in a range of sophisticated finishes, allowing you to express your individuality with elegance. Ideal for everyday wear, these eyeglasses combine Ray-Ban’s heritage with cutting-edge design for a truly exceptional accessory.</p>
+        </div>
+
+        
+    
+        <div class="product-specifications">
+            <h3>Product Specifications:</h3>
+
+            <!-- Frame Description Section -->
+            <div class="spec-frame-color">
+                <div class="frame-and-dimensions">
+                    <!-- Frame Description Section -->
+                    <div class="spec-frame">
+                        <div class="frame-header">
+                            <img src="imagesPilot/frameDescription.png" alt="Frame Description" class="frame-image">
+                            <h4>Frame Description</h4>
+                        </div>
+                        <ul>
+                            <li><strong>Frame Shape:</strong> Pilot</li>
+                            <li><strong>Frame Color:</strong> Polished Arista Gold</li>
+                            <li><strong>Frame Material:</strong> Titanium</li>
+                            <li><strong>Temple Color:</strong> Arista Gold</li>
+                        </ul>
+                    </div>
+            
+                    <!-- Product Dimensions Section -->
+                    <div class="spec-dimensions">
+                        <div class="frame-header">
+                            <img src="imagesPilot/productDimension.png" alt="Product Dimensions" class="product-image">
+                            <h4>Product Dimensions</h4>
+                        </div>
+                        <ul>
+                            <li><strong>Hinge to Hinge:</strong> 135mm</li>
+                            <li><strong>Lens Height:</strong> 51.2mm</li>
+                            <li><strong>Bridge Width:</strong> 58 14mm</li>
+                            <li><strong>Temple Length:</strong> 140mm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Colors Section -->
+           
+            <div class="color-options">
+                <h4>Available Colors</h4>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <a href="aviatorTitaniumDetails.html">
+                        <img src="imagesPilot/at_polishedLightBrown.jpg" alt="Polished Light Brown">
+                        </a>
+                        <h6>Polished Light Brown</h6>
+                      </div>
+                  <div class="color-item">
+                    <a href="aviatorAG.html">
+                    <img src="imagesPilot/at_PolishedAristaGold.jpg" alt="Polished Arista Gold">
+                    </a>
+                    <h6>Polished Arista Gold</h6>
+                  </div>
+                  <div class="color-item">
+                    <a href="aviatorBlack.html">
+                    <img src="imagesPilot/at_PolishedBlack.jpg" alt="Polished Black">
+                    </a>
+                    <h6>Polished Black</h6>
+                  </div>
+                  <div class="color-item">
+                    <a href="aviatorSilver.html">
+                    <img src="imagesPilot/at_PolishedSilver.jpg" alt="Polished Silver">
+                    </a>
+                    <h6>Polished Silver</h6>
+                  </div>
+                  
+                  
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+    </div>
+    
+</div>
+
+<footer>&copy; COPYRIGHT 2024 AR EYEWEAR OPTICAL ®, INC. ALL RIGHTS RESERVED.</footer>
+
+</body>
+</html>
